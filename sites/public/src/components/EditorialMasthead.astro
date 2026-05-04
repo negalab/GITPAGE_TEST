@@ -1,0 +1,150 @@
+---
+// Helmut Newton-inspired magazine masthead — used on the home page only.
+import { siteConfig, profileConfig } from "@/config";
+---
+
+<header class="editorial-masthead">
+    <nav class="topnav">
+        <span>MR_5PM</span>
+        <em>a journal of AI, content & code</em>
+        <span>ARCHIVE &nbsp;·&nbsp; NOTES &nbsp;·&nbsp; CONTACT</span>
+    </nav>
+
+    <div class="masthead-grid">
+        <div class="badge-l">
+            <em>Seoul → Web<br />Educator's<br />notebook</em>
+        </div>
+
+        <div class="title-stack">
+            <div class="hd-row">MR</div>
+            <div class="script-row">five pm</div>
+            <div class="hd-row">_5PM</div>
+        </div>
+
+        <div class="badge-r">
+            <em>Issue 001<br />Spring 2026<br />written in seoul</em>
+        </div>
+    </div>
+
+    <p class="lede">
+        <strong>{profileConfig.name}</strong> — {profileConfig.bio}
+        <em> 매주 한 통, 메일로 정리해 보내드립니다.</em>
+    </p>
+
+    <div class="rule-thin"></div>
+</header>
+
+<style>
+.editorial-masthead {
+    background: var(--paper);
+    background-image: radial-gradient(rgba(0,0,0,.012) 1px, transparent 1px);
+    background-size: 3px 3px;
+    padding: 24px 40px 40px;
+    margin-bottom: 32px;
+    color: var(--ink);
+}
+
+.topnav {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: var(--font-label);
+    font-size: 11px;
+    letter-spacing: var(--label-tracking);
+    text-transform: uppercase;
+    padding: 8px 0 10px;
+    border-bottom: 1px solid var(--rule);
+    border-top: 1px solid var(--rule);
+    color: var(--ink);
+}
+.topnav em {
+    text-transform: none;
+    font-style: italic;
+    letter-spacing: 0.02em;
+    font-size: 12px;
+    color: var(--muted);
+    font-family: var(--font-serif);
+}
+
+.masthead-grid {
+    display: grid;
+    grid-template-columns: 110px 1fr 110px;
+    gap: 16px;
+    align-items: center;
+    padding: 48px 0 24px;
+}
+
+.title-stack {
+    text-align: center;
+    line-height: 0.92;
+}
+
+.hd-row {
+    font-family: var(--font-serif-sc);
+    font-weight: 700;
+    font-size: clamp(64px, 12vw, 144px);
+    letter-spacing: -0.005em;
+    text-transform: uppercase;
+    color: var(--ink);
+}
+
+.script-row {
+    font-family: var(--font-script);
+    font-weight: 400;
+    font-size: clamp(48px, 9vw, 110px);
+    line-height: 0.85;
+    color: var(--ink);
+    margin: -0.15em 0;
+}
+
+.badge-l, .badge-r {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 11px;
+    line-height: 1.4;
+    color: var(--muted);
+    border-top: 1px solid var(--ink);
+    padding-top: 6px;
+}
+.badge-r { text-align: right; border-top-color: var(--ink); }
+
+.lede {
+    margin: 32px auto 0;
+    text-align: center;
+    font-family: var(--font-serif);
+    font-size: 14.5px;
+    line-height: 1.7;
+    letter-spacing: var(--body-tracking);
+    color: var(--ink-soft);
+    max-width: 65ch;
+}
+.lede strong { font-weight: 600; color: var(--ink); }
+.lede em { font-style: italic; color: var(--muted); }
+
+.rule-thin {
+    margin-top: 32px;
+    height: 1px;
+    background: var(--rule);
+}
+
+@media (max-width: 720px) {
+    .editorial-masthead { padding: 16px 20px 28px; }
+    .masthead-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 24px 0 16px;
+    }
+    .badge-l, .badge-r {
+        text-align: center;
+        border-top: none;
+        font-size: 10px;
+    }
+    .topnav {
+        font-size: 9px;
+        flex-direction: column;
+        gap: 4px;
+        align-items: center;
+        text-align: center;
+    }
+}
+</style>

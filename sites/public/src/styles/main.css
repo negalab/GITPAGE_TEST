@@ -1,13 +1,37 @@
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
-
 @tailwind components;
 
+/* ═══════════════════════════════════════════════════════════════════════
+ * HELMUT NEWTON EDITORIAL DESIGN SYSTEM
+ * Fonts loaded via <link> in Layout.astro head: Cormorant Garamond,
+ * Cormorant SC, Libre Caslon Text, Pinyon Script, Noto Serif KR.
+ * ═══════════════════════════════════════════════════════════════════════ */
+
 :root {
-    --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+    --paper: #f6f3ec;
+    --paper-deep: #d6d2c8;
+    --ink: #161410;
+    --ink-soft: #1d1a13;
+    --rule: #1a1a1a;
+    --muted: #5a5750;
+    --headline-tracking: -0.01em;
+    --body-tracking: 0.005em;
+    --label-tracking: 0.32em;
+    --script-tracking: 0;
+    --body-leading: 1.65;
+    --headline-leading: 0.95;
+
+    --font-serif: "Cormorant Garamond", "Noto Serif KR", "Libre Caslon Text", Georgia, serif;
+    --font-serif-sc: "Cormorant SC", "Cormorant Garamond", "Noto Serif KR", serif;
+    --font-script: "Pinyon Script", "Italianno", cursive;
+    --font-label: "Libre Caslon Text", "Cormorant Garamond", "Noto Serif KR", serif;
+    --font-sans: var(--font-serif);
 }
 
 html, body {
-    font-family: var(--font-sans);
+    font-family: var(--font-serif);
+    background: var(--paper-deep);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
 }
 
 @layer components {
@@ -160,3 +184,280 @@ html, body {
     }
   }
 }
+/* ═══════════════════════════════════════════════════════════════════════
+ * EDITORIAL OVERRIDES — Fuwari → Helmut Newton magazine aesthetic
+ * Loaded after all base styles to win specificity.
+ * ═══════════════════════════════════════════════════════════════════════ */
+
+/* Page background = paper-deep wrapper, content sits on cream paper. */
+html, body, .bg-\[var\(--page-bg\)\] {
+    background: var(--paper-deep) !important;
+    color: var(--ink) !important;
+}
+
+/* Card chrome: drop rounded corners + shadows + colored bg.  Flat magazine entry. */
+.card-base {
+    background: var(--paper) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    border-top: 1px solid var(--rule);
+    /* faint paper texture */
+    background-image: radial-gradient(rgba(0,0,0,.012) 1px, transparent 1px) !important;
+    background-size: 3px 3px !important;
+}
+.card-base:first-of-type { border-top: none; }
+
+.card-shadow { filter: none !important; }
+
+/* Round/colored "enter" pill button → tiny editorial arrow */
+.btn-regular,
+.btn-plain,
+.float-panel,
+.search-panel,
+.float-panel-closed {
+    border-radius: 0 !important;
+}
+
+/* Post card title → editorial Cormorant SC */
+.card-base a[class*="text-3xl"],
+.card-base a[class*="text-2xl"] {
+    font-family: var(--font-serif-sc) !important;
+    font-size: clamp(28px, 4vw, 48px) !important;
+    font-weight: 700 !important;
+    letter-spacing: var(--headline-tracking) !important;
+    line-height: var(--headline-leading) !important;
+    color: var(--ink) !important;
+    text-transform: uppercase;
+}
+.card-base a[class*="text-3xl"]:hover,
+.card-base a[class*="text-2xl"]:hover {
+    color: var(--muted) !important;
+}
+.card-base a[class*="text-3xl"]::before,
+.card-base a[class*="text-2xl"]::before {
+    display: none !important;
+}
+
+/* Post card description → editorial body */
+.card-base .text-75,
+.card-base [class*="line-clamp"] {
+    font-family: var(--font-serif) !important;
+    font-size: 14px !important;
+    line-height: var(--body-leading) !important;
+    color: var(--ink-soft) !important;
+    font-style: italic;
+}
+
+/* Sidebar profile card → magazine masthead badge */
+#sidebar .card-base {
+    text-align: center;
+}
+
+/* Profile name */
+.text-90 { color: var(--ink) !important; }
+.text-75 { color: var(--ink-soft) !important; }
+.text-50 { color: var(--muted) !important; }
+.text-30 { color: var(--muted) !important; }
+
+/* Color "primary" mappings: hijack accent color to ink */
+:root, .dark {
+    --primary: var(--ink) !important;
+    --title-active: var(--muted) !important;
+    --line-color: var(--rule) !important;
+}
+
+/* Navbar → thin top utility nav */
+#navbar-wrapper {
+    background: transparent !important;
+}
+#navbar {
+    background: var(--paper) !important;
+    border-radius: 0 !important;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+}
+#navbar a, #navbar span {
+    font-family: var(--font-label);
+    font-size: 11px !important;
+    letter-spacing: var(--label-tracking);
+    text-transform: uppercase;
+    color: var(--ink) !important;
+}
+
+/* All cover/post images → grayscale + contrast */
+.card-base img,
+#post-cover img,
+.custom-md img,
+.cover img {
+    filter: grayscale(1) contrast(1.05);
+    border-radius: 0 !important;
+}
+
+/* Article body — markdown rendered through .custom-md class */
+.custom-md {
+    font-family: var(--font-serif) !important;
+    color: var(--ink) !important;
+    background: var(--paper);
+}
+.custom-md p {
+    font-family: var(--font-serif);
+    font-size: 16px;
+    line-height: var(--body-leading);
+    letter-spacing: var(--body-tracking);
+    color: var(--ink-soft);
+    text-align: justify;
+    hyphens: auto;
+    margin: 0 0 1.2em;
+}
+.custom-md > p:first-of-type {
+    /* lede */
+    text-align: center;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ink);
+    max-width: 90%;
+    margin: 0 auto 2em;
+    font-style: italic;
+}
+.custom-md h1 {
+    font-family: var(--font-serif-sc);
+    font-weight: 700;
+    font-size: clamp(48px, 8vw, 96px);
+    letter-spacing: -0.005em;
+    line-height: var(--headline-leading);
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--ink);
+    margin: 0.4em 0 0.6em;
+    border: none !important;
+}
+.custom-md h2 {
+    font-family: var(--font-label);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: var(--label-tracking);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 4px;
+    margin: 2.5em 0 1.2em;
+    color: var(--ink);
+}
+.custom-md h3 {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 22px;
+    letter-spacing: 0.005em;
+    margin: 2em 0 0.6em;
+    color: var(--ink);
+}
+.custom-md h4, .custom-md h5, .custom-md h6 {
+    font-family: var(--font-serif-sc);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 16px;
+    margin: 1.5em 0 0.8em;
+    color: var(--ink);
+}
+.custom-md blockquote {
+    font-family: var(--font-serif-sc);
+    font-weight: 600;
+    font-size: clamp(28px, 4vw, 48px);
+    line-height: 1.05;
+    letter-spacing: var(--headline-tracking);
+    text-align: left;
+    color: var(--ink);
+    border: none !important;
+    padding: 1em 0;
+    margin: 2em 0;
+    text-transform: uppercase;
+    font-style: normal;
+}
+.custom-md blockquote p { font-size: inherit; line-height: inherit; text-align: inherit; font-style: inherit; }
+.custom-md a {
+    color: var(--ink);
+    border-bottom: 1px solid var(--muted);
+    text-decoration: none;
+    transition: border-color .15s;
+}
+.custom-md a:hover { border-bottom-color: var(--ink); }
+.custom-md ul, .custom-md ol {
+    font-family: var(--font-serif);
+    font-size: 16px;
+    line-height: var(--body-leading);
+    color: var(--ink-soft);
+}
+.custom-md hr {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 3em 0;
+    width: 33%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.custom-md code:not(pre code) {
+    background: var(--paper-deep) !important;
+    color: var(--ink) !important;
+    border-radius: 0 !important;
+    padding: 1px 4px;
+    font-size: 0.85em;
+}
+
+/* Post cover image area in single article */
+#post-cover {
+    border-radius: 0 !important;
+}
+
+/* Section labels — utility class for editorial component reuse */
+.editorial-label {
+    font-family: var(--font-label);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: var(--label-tracking);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 4px;
+    color: var(--ink);
+    display: block;
+}
+
+.editorial-script { font-family: var(--font-script); font-weight: 400; }
+.editorial-sc { font-family: var(--font-serif-sc); font-weight: 700; text-transform: uppercase; letter-spacing: var(--headline-tracking); }
+.editorial-body { font-family: var(--font-serif); font-size: 14px; line-height: var(--body-leading); color: var(--ink-soft); }
+.editorial-meta { font-family: var(--font-label); font-style: italic; font-size: 11px; color: var(--muted); letter-spacing: 0.04em; }
+
+/* Footer */
+#footer, .footer {
+    background: var(--paper) !important;
+    color: var(--muted) !important;
+    border-top: 1px solid var(--rule);
+}
+#footer a, .footer a {
+    font-family: var(--font-label);
+    font-size: 11px;
+    letter-spacing: var(--label-tracking);
+    text-transform: uppercase;
+    color: var(--muted) !important;
+}
+
+/* Search/display setting panel pop chrome */
+.float-panel { background: var(--paper) !important; }
+
+/* Pagination buttons */
+[class*="pagination"] a, [class*="pagination"] button {
+    border-radius: 0 !important;
+    background: var(--paper) !important;
+    color: var(--ink) !important;
+    font-family: var(--font-label);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* Drop the Fuwari "primary color hue" picker effect */
+:root { --hue: 30 !important; }

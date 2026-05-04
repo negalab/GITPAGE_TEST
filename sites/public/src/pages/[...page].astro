@@ -1,5 +1,6 @@
 ---
 import type { GetStaticPaths } from "astro";
+import EditorialMasthead from "../components/EditorialMasthead.astro";
 import Newsletter from "../components/Newsletter.astro";
 import Pagination from "../components/control/Pagination.astro";
 import PostPage from "../components/PostPage.astro";
@@ -19,7 +20,19 @@ const len = page.data.length;
 ---
 
 <MainGridLayout>
+    {page.url.prev === undefined && <EditorialMasthead />}
+    <div class="editorial-section-label-wrap"><span class="editorial-label">LATEST DISPATCHES</span></div>
     <PostPage page={page}></PostPage>
     <Pagination class="mx-auto onload-animation" page={page} style={`animation-delay: calc(var(--content-delay) + ${(len)*50}ms)`}></Pagination>
     {page.url.prev === undefined && <Newsletter />}
 </MainGridLayout>
+
+<style is:global>
+.editorial-section-label-wrap {
+    padding: 0 40px;
+    margin: 16px 0 8px;
+}
+@media (max-width: 720px) {
+    .editorial-section-label-wrap { padding: 0 20px; }
+}
+</style>

@@ -12,8 +12,8 @@ export const siteConfig: SiteConfig = {
 	subtitle: "AI · 콘텐츠 · 개발에 대한 기록",
 	lang: "ko",
 	themeColor: {
-		hue: 220,
-		fixed: false,
+		hue: 30,
+		fixed: true,
 	},
 	banner: {
 		enable: false,
