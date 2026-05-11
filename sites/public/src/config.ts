@@ -8,11 +8,11 @@ import type {
 import { LinkPreset } from "./types/config";
 
 export const siteConfig: SiteConfig = {
-	title: "MR_5PM",
-	subtitle: "AI · 콘텐츠 · 개발에 대한 기록",
+	title: "dykwon",
+	subtitle: "notes on teaching, building, writing",
 	lang: "ko",
 	themeColor: {
-		hue: 30,
+		hue: 0,
 		fixed: true,
 	},
 	banner: {
@@ -53,9 +53,9 @@ export const navBarConfig: NavBarConfig = {
 };
 
 export const profileConfig: ProfileConfig = {
-	avatar: "assets/images/mr5pm-monogram.svg",
-	name: "MR_5PM",
-	bio: "AI 콘텐츠 크리에이터 / 강사 / 개발자. Claude·옵시디언·자동화로 만드는 디지털 정원.",
+	avatar: "assets/images/dykwon-mark.svg",
+	name: "dykwon",
+	bio: "Educator, writer, builder. Teaching lean startup. Writing about AI, business, and craft.",
 	links: [
 		{
 			name: "GitHub",

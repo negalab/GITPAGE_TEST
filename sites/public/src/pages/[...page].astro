@@ -21,18 +21,20 @@ const len = page.data.length;
 
 <MainGridLayout>
     {page.url.prev === undefined && <EditorialMasthead />}
-    <div class="editorial-section-label-wrap"><span class="editorial-label">LATEST DISPATCHES</span></div>
+    <div class="swiss-section-label-wrap">
+        <span class="swiss-label">Index — recent writing</span>
+    </div>
     <PostPage page={page}></PostPage>
     <Pagination class="mx-auto onload-animation" page={page} style={`animation-delay: calc(var(--content-delay) + ${(len)*50}ms)`}></Pagination>
     {page.url.prev === undefined && <Newsletter />}
 </MainGridLayout>
 
 <style is:global>
-.editorial-section-label-wrap {
-    padding: 0 40px;
-    margin: 16px 0 8px;
+.swiss-section-label-wrap {
+    padding: 0 32px;
+    margin: 8px 0 4px;
 }
 @media (max-width: 720px) {
-    .editorial-section-label-wrap { padding: 0 20px; }
+    .swiss-section-label-wrap { padding: 0 20px; }
 }
 </style>

@@ -1,30 +1,30 @@
 ---
-// Editorial-style newsletter card — sign up for Buttondown.
+// Swiss minimal newsletter — flat form, hairline rules, type-led.
 // To activate: sign up at https://buttondown.com (free up to 100 subs)
 // then replace BUTTONDOWN_USERNAME below with your handle.
 const BUTTONDOWN_USERNAME = "YOUR_USERNAME_HERE";
 const isPlaceholder = BUTTONDOWN_USERNAME === "YOUR_USERNAME_HERE";
 ---
 
-<aside class="editorial-newsletter">
-    <div class="rule-thick"></div>
+<aside id="newsletter" class="swiss-newsletter">
+    <div class="rule-top"></div>
 
-    <div class="newsletter-grid">
-        <div class="badge-side">
-            <em>Postal<br />Edition<br />— weekly</em>
+    <div class="grid">
+        <div class="meta">
+            <span class="meta-label">Section</span>
+            <span class="meta-value">Subscribe</span>
         </div>
 
-        <div class="newsletter-body">
-            <h3 class="nl-headline">새 글이 도착하면<br /><span class="nl-script">알려드릴게요</span></h3>
-
-            <p class="nl-lede">
-                AI · 콘텐츠 · 개발에 대한 글을 매주 한 통 메일로 보내드립니다.
-                <em>광고 없음. 언제든 구독 취소.</em>
+        <div class="body">
+            <h2 class="headline">Get new posts in your inbox.</h2>
+            <p class="lede">
+                A short letter every week or so. AI, business, teaching, writing.
+                No ads, no fluff. Unsubscribe any time.
             </p>
 
             {isPlaceholder ? (
-                <div class="placeholder-warning">
-                    뉴스레터 비활성화 상태 — Buttondown 가입 후 <code>src/components/Newsletter.astro</code>의 <code>BUTTONDOWN_USERNAME</code>을 본인 핸들로 변경하세요.
+                <div class="placeholder">
+                    Newsletter is inactive. Configure <code>BUTTONDOWN_USERNAME</code> in <code>src/components/Newsletter.astro</code> after signing up at <a href="https://buttondown.com">buttondown.com</a>.
                 </div>
             ) : (
                 <form
@@ -32,164 +32,155 @@ const isPlaceholder = BUTTONDOWN_USERNAME === "YOUR_USERNAME_HERE";
                     method="post"
                     target="popupwindow"
                     onsubmit={`window.open('https://buttondown.com/${BUTTONDOWN_USERNAME}', 'popupwindow')`}
-                    class="nl-form"
+                    class="form"
                 >
                     <input
                         type="email"
                         name="email"
                         placeholder="your@email.com"
                         required
-                        class="nl-input"
+                        class="input"
                     />
-                    <button type="submit" class="nl-submit">SUBSCRIBE →</button>
+                    <button type="submit" class="submit">Subscribe →</button>
                 </form>
             )}
         </div>
 
-        <div class="badge-side badge-right">
-            <em>since<br />2026<br />issue 001</em>
+        <div class="meta meta-right">
+            <span class="meta-label">Frequency</span>
+            <span class="meta-value">weekly</span>
         </div>
     </div>
 
-    <div class="rule-thin"></div>
+    <div class="rule-bot"></div>
 </aside>
 
 <style>
-.editorial-newsletter {
-    background: var(--paper);
-    background-image: radial-gradient(rgba(0,0,0,.012) 1px, transparent 1px);
-    background-size: 3px 3px;
-    padding: 24px 40px 32px;
-    margin: 32px 0;
-    color: var(--ink);
+.swiss-newsletter {
+    background: var(--white);
+    color: var(--black);
+    padding: 0 32px;
+    margin: 48px 0;
 }
 
-.rule-thick {
-    height: 3px;
-    background: var(--ink);
-    margin-bottom: 24px;
-}
-.rule-thin {
-    height: 1px;
-    background: var(--rule);
-    margin-top: 24px;
-}
+.rule-top { height: 1px; background: var(--black); }
+.rule-bot { height: 1px; background: var(--black); }
 
-.newsletter-grid {
+.grid {
     display: grid;
-    grid-template-columns: 90px 1fr 90px;
-    gap: 24px;
+    grid-template-columns: 140px 1fr 140px;
+    gap: 32px;
+    padding: 48px 0;
     align-items: start;
 }
 
-.badge-side {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 11px;
-    line-height: 1.4;
-    color: var(--muted);
-    border-top: 1px solid var(--ink);
-    padding-top: 6px;
+.meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
-.badge-right { text-align: right; }
-
-.newsletter-body { text-align: center; }
-
-.nl-headline {
-    font-family: var(--font-serif-sc);
-    font-weight: 700;
-    font-size: clamp(28px, 4vw, 44px);
-    letter-spacing: var(--headline-tracking);
-    line-height: 1.05;
+.meta-right { text-align: right; align-items: flex-end; }
+.meta-label {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: var(--tracking-wide);
     text-transform: uppercase;
-    color: var(--ink);
+    color: var(--gray-400);
+}
+.meta-value {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: var(--tracking-snug);
+    color: var(--black);
+}
+
+.body { max-width: 560px; }
+
+.headline {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: clamp(28px, 3.5vw, 44px);
+    letter-spacing: var(--tracking-tight);
+    line-height: 1.05;
+    color: var(--black);
     margin: 0 0 16px;
 }
-.nl-script {
-    font-family: var(--font-script);
-    font-weight: 400;
-    text-transform: none;
-    font-size: 1.1em;
-    color: var(--ink);
-    letter-spacing: 0;
+
+.lede {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.55;
+    letter-spacing: var(--tracking-snug);
+    color: var(--gray-600);
+    margin: 0 0 24px;
 }
 
-.nl-lede {
-    font-family: var(--font-serif);
-    font-size: 13.5px;
-    line-height: 1.65;
-    color: var(--ink-soft);
-    max-width: 50ch;
-    margin: 0 auto 20px;
-}
-.nl-lede em { color: var(--muted); font-style: italic; }
-
-.nl-form {
+.form {
     display: flex;
     gap: 0;
     max-width: 480px;
-    margin: 0 auto;
-    border: 1px solid var(--ink);
+    border: 1px solid var(--black);
 }
-
-.nl-input {
+.input {
     flex: 1;
-    padding: 10px 14px;
-    background: var(--paper);
+    padding: 12px 14px;
+    background: var(--white);
     border: none;
     outline: none;
-    font-family: var(--font-serif);
+    font-family: var(--font-sans);
     font-size: 14px;
-    color: var(--ink);
+    color: var(--black);
+    letter-spacing: var(--tracking-snug);
 }
-.nl-input::placeholder {
-    color: var(--muted);
-    font-style: italic;
-}
+.input::placeholder { color: var(--gray-400); }
 
-.nl-submit {
-    padding: 10px 20px;
-    background: var(--ink);
-    color: var(--paper);
+.submit {
+    padding: 12px 20px;
+    background: var(--black);
+    color: var(--white);
     border: none;
-    font-family: var(--font-label);
-    font-size: 11px;
-    letter-spacing: var(--label-tracking);
-    text-transform: uppercase;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: var(--tracking-snug);
     cursor: pointer;
-    transition: background .15s;
+    transition: opacity .15s;
 }
-.nl-submit:hover { background: var(--muted); }
+.submit:hover { opacity: 0.85; }
 
-.placeholder-warning {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 12px;
-    color: var(--muted);
-    border: 1px dashed var(--muted);
-    padding: 12px 16px;
+.placeholder {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--gray-600);
+    border: 1px solid var(--gray-200);
+    padding: 14px 16px;
     max-width: 540px;
-    margin: 0 auto;
 }
-.placeholder-warning code {
-    background: var(--paper-deep);
-    padding: 1px 4px;
-    font-family: ui-monospace, monospace;
-    font-size: 11px;
-    font-style: normal;
+.placeholder code {
+    background: var(--gray-50);
+    padding: 1px 6px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--black);
+}
+.placeholder a {
+    color: var(--black);
+    text-decoration: underline;
+    text-underline-offset: 2px;
 }
 
 @media (max-width: 720px) {
-    .editorial-newsletter { padding: 16px 20px 24px; }
-    .newsletter-grid {
+    .swiss-newsletter { padding: 0 20px; }
+    .grid {
         grid-template-columns: 1fr;
         gap: 16px;
+        padding: 32px 0;
     }
-    .badge-side, .badge-right {
-        text-align: center;
-        border-top: none;
-    }
-    .nl-form { flex-direction: column; }
-    .nl-input { border-bottom: 1px solid var(--ink); }
+    .meta-right { text-align: left; align-items: flex-start; }
+    .form { flex-direction: column; max-width: 100%; }
+    .input { border-bottom: 1px solid var(--black); }
 }
 </style>

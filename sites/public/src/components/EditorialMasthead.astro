@@ -1,150 +1,147 @@
 ---
-// Helmut Newton-inspired magazine masthead — used on the home page only.
+// Swiss minimal masthead — used on the home page only.
 import { siteConfig, profileConfig } from "@/config";
+
+const today = new Date();
+const issue = String(1).padStart(2, "0");
+const year = today.getFullYear();
+const dateStr = today.toISOString().slice(0, 10);
 ---
 
-<header class="editorial-masthead">
-    <nav class="topnav">
-        <span>MR_5PM</span>
-        <em>a journal of AI, content & code</em>
-        <span>ARCHIVE &nbsp;·&nbsp; NOTES &nbsp;·&nbsp; CONTACT</span>
-    </nav>
-
-    <div class="masthead-grid">
-        <div class="badge-l">
-            <em>Seoul → Web<br />Educator's<br />notebook</em>
-        </div>
-
-        <div class="title-stack">
-            <div class="hd-row">MR</div>
-            <div class="script-row">five pm</div>
-            <div class="hd-row">_5PM</div>
-        </div>
-
-        <div class="badge-r">
-            <em>Issue 001<br />Spring 2026<br />written in seoul</em>
-        </div>
+<header class="swiss-masthead">
+    <div class="topline">
+        <span class="meta-left swiss-num">№ {issue} / {year}</span>
+        <span class="meta-mid">{siteConfig.subtitle}</span>
+        <span class="meta-right swiss-num">{dateStr}</span>
     </div>
 
-    <p class="lede">
-        <strong>{profileConfig.name}</strong> — {profileConfig.bio}
-        <em> 매주 한 통, 메일로 정리해 보내드립니다.</em>
-    </p>
+    <div class="title-block">
+        <h1 class="title">{siteConfig.title}</h1>
+        <p class="bio">{profileConfig.bio}</p>
+    </div>
 
-    <div class="rule-thin"></div>
+    <div class="grid-row">
+        <div class="col">
+            <span class="col-label">section</span>
+            <span class="col-value">writing</span>
+        </div>
+        <div class="col">
+            <span class="col-label">section</span>
+            <span class="col-value">teaching</span>
+        </div>
+        <div class="col">
+            <span class="col-label">section</span>
+            <span class="col-value">making</span>
+        </div>
+        <div class="col">
+            <span class="col-label">subscribe</span>
+            <span class="col-value"><a href="#newsletter">→ email</a></span>
+        </div>
+    </div>
 </header>
 
 <style>
-.editorial-masthead {
-    background: var(--paper);
-    background-image: radial-gradient(rgba(0,0,0,.012) 1px, transparent 1px);
-    background-size: 3px 3px;
-    padding: 24px 40px 40px;
+.swiss-masthead {
+    background: var(--white);
+    color: var(--black);
+    padding: 16px 32px 0;
     margin-bottom: 32px;
-    color: var(--ink);
+    border-bottom: 1px solid var(--black);
 }
 
-.topnav {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    font-family: var(--font-label);
-    font-size: 11px;
-    letter-spacing: var(--label-tracking);
-    text-transform: uppercase;
-    padding: 8px 0 10px;
-    border-bottom: 1px solid var(--rule);
-    border-top: 1px solid var(--rule);
-    color: var(--ink);
-}
-.topnav em {
-    text-transform: none;
-    font-style: italic;
-    letter-spacing: 0.02em;
-    font-size: 12px;
-    color: var(--muted);
-    font-family: var(--font-serif);
-}
-
-.masthead-grid {
+.topline {
     display: grid;
-    grid-template-columns: 110px 1fr 110px;
-    gap: 16px;
-    align-items: center;
-    padding: 48px 0 24px;
-}
-
-.title-stack {
-    text-align: center;
-    line-height: 0.92;
-}
-
-.hd-row {
-    font-family: var(--font-serif-sc);
-    font-weight: 700;
-    font-size: clamp(64px, 12vw, 144px);
-    letter-spacing: -0.005em;
-    text-transform: uppercase;
-    color: var(--ink);
-}
-
-.script-row {
-    font-family: var(--font-script);
-    font-weight: 400;
-    font-size: clamp(48px, 9vw, 110px);
-    line-height: 0.85;
-    color: var(--ink);
-    margin: -0.15em 0;
-}
-
-.badge-l, .badge-r {
-    font-family: var(--font-serif);
-    font-style: italic;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: baseline;
+    border-top: 1px solid var(--black);
+    border-bottom: 1px solid var(--black);
+    padding: 8px 0;
+    font-family: var(--font-sans);
     font-size: 11px;
-    line-height: 1.4;
-    color: var(--muted);
-    border-top: 1px solid var(--ink);
-    padding-top: 6px;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--black);
 }
-.badge-r { text-align: right; border-top-color: var(--ink); }
-
-.lede {
-    margin: 32px auto 0;
+.meta-left { text-align: left; }
+.meta-mid {
     text-align: center;
-    font-family: var(--font-serif);
-    font-size: 14.5px;
-    line-height: 1.7;
-    letter-spacing: var(--body-tracking);
-    color: var(--ink-soft);
-    max-width: 65ch;
+    text-transform: none;
+    letter-spacing: var(--tracking-snug);
+    color: var(--gray-600);
+    font-size: 12px;
 }
-.lede strong { font-weight: 600; color: var(--ink); }
-.lede em { font-style: italic; color: var(--muted); }
+.meta-right { text-align: right; }
 
-.rule-thin {
-    margin-top: 32px;
-    height: 1px;
-    background: var(--rule);
+.title-block {
+    padding: 72px 0 48px;
+    max-width: 720px;
 }
+.title {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: clamp(56px, 11vw, 144px);
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    color: var(--black);
+    margin: 0 0 24px;
+}
+.bio {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: clamp(17px, 1.6vw, 21px);
+    line-height: 1.4;
+    letter-spacing: var(--tracking-snug);
+    color: var(--gray-600);
+    max-width: 56ch;
+    margin: 0;
+}
+
+.grid-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    padding: 24px 0;
+    border-top: 1px solid var(--black);
+}
+.col {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.col-label {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--gray-400);
+}
+.col-value {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: var(--tracking-snug);
+    color: var(--black);
+}
+.col-value a {
+    color: var(--black);
+    text-decoration: none;
+    border-bottom: 1px solid var(--black);
+    transition: opacity .15s;
+}
+.col-value a:hover { opacity: 0.5; }
 
 @media (max-width: 720px) {
-    .editorial-masthead { padding: 16px 20px 28px; }
-    .masthead-grid {
-        grid-template-columns: 1fr;
-        gap: 8px;
-        padding: 24px 0 16px;
-    }
-    .badge-l, .badge-r {
-        text-align: center;
-        border-top: none;
+    .swiss-masthead { padding: 12px 20px 0; }
+    .topline {
+        grid-template-columns: 1fr 1fr;
         font-size: 10px;
     }
-    .topnav {
-        font-size: 9px;
-        flex-direction: column;
-        gap: 4px;
-        align-items: center;
-        text-align: center;
+    .meta-mid { display: none; }
+    .title-block { padding: 40px 0 32px; }
+    .grid-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
     }
 }
 </style>
