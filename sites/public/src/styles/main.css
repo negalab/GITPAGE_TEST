@@ -503,3 +503,106 @@ html, body, .bg-\[var\(--page-bg\)\] {
     text-align: left !important;
 }
 #sidebar .card-base .h-1 { display: none !important; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+ * Swiss button override + alignment fix
+ * ═══════════════════════════════════════════════════════════════════════ */
+
+/* All dark FAB-style buttons → flat white + 1px black + black icon */
+.btn-regular,
+.btn-plain,
+.btn-card,
+.back-to-top-btn,
+.btn-regular-dark,
+.meta-icon {
+    background: var(--white) !important;
+    background-color: var(--white) !important;
+    border: 1px solid var(--black) !important;
+    border-radius: 0 !important;
+    color: var(--black) !important;
+    box-shadow: none !important;
+    transition: opacity .15s ease, background .15s ease, color .15s ease !important;
+}
+.btn-regular *, .btn-plain *, .btn-card *, .back-to-top-btn *, .meta-icon * {
+    color: var(--black) !important;
+    fill: var(--black) !important;
+}
+
+/* Hover → invert (black bg, white icon) */
+.btn-regular:hover,
+.btn-plain:hover,
+.btn-card:hover,
+.back-to-top-btn:hover {
+    background: var(--black) !important;
+    background-color: var(--black) !important;
+    color: var(--white) !important;
+}
+.btn-regular:hover *,
+.btn-plain:hover *,
+.btn-card:hover *,
+.back-to-top-btn:hover * {
+    color: var(--white) !important;
+    fill: var(--white) !important;
+}
+
+/* Override Fuwari's :before scale animation pill — kill the colored pill */
+.btn-plain::before,
+.expand-animation::before {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Active states — solid black */
+.btn-regular:active,
+.btn-plain:active,
+.btn-card:active {
+    background: var(--black) !important;
+    color: var(--white) !important;
+}
+
+/* Profile sidebar social buttons — same minimal treatment */
+#sidebar .btn-regular {
+    background: var(--white) !important;
+    border: 1px solid var(--black) !important;
+    color: var(--black) !important;
+}
+
+/* The "enter" arrow chip on post cards — flat */
+.card-base [class*="bg-[var(--enter-btn-bg)]"],
+.card-base [class*="enter-btn-bg"] {
+    background: var(--white) !important;
+    border: 1px solid var(--black) !important;
+    border-radius: 0 !important;
+}
+
+/* Hue picker, theme buttons — disable dark fills */
+[id="display-setting"] .btn-plain,
+[id="display-setting"] .btn-regular {
+    background: var(--white) !important;
+    border: 1px solid var(--gray-200) !important;
+}
+
+/* Search panel — flat */
+.search-panel {
+    background: var(--white) !important;
+    border: 1px solid var(--black) !important;
+}
+
+/* ─── Alignment: masthead/newsletter/section label match post card edges ─── */
+.swiss-masthead {
+    padding-left: 36px !important;
+    padding-right: 36px !important;
+}
+.swiss-newsletter {
+    padding-left: 36px !important;
+    padding-right: 36px !important;
+}
+.swiss-section-label-wrap {
+    padding-left: 36px !important;
+    padding-right: 36px !important;
+}
+@media (max-width: 768px) {
+    .swiss-masthead { padding-left: 24px !important; padding-right: 24px !important; }
+    .swiss-newsletter { padding-left: 24px !important; padding-right: 24px !important; }
+    .swiss-section-label-wrap { padding-left: 24px !important; padding-right: 24px !important; }
+}
