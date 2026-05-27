@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dream Conference 2026 · SMIT Web Design & Development</title>
+  <meta name="description" content="16 dreams. One classroom. One semester. — Spring 2026 student showcase from Web Design & Development at SMIT.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg-dark: #0a0a0a;
+      --bg-mid: #141414;
+      --bg-card: #ffffff;
+      --ink: #ededed;
+      --ink-dim: #999;
+      --ink-card: #1a1a1a;
+      --accent: #c96442;
+      --accent-bright: #e88058;
+      --gold: #d4af37;
+      --line: rgba(255, 255, 255, 0.08);
+      --line-card: #ececec;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg-dark);
+      color: var(--ink);
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ─────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      padding: 60px 6vw 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      background:
+        radial-gradient(ellipse at 20% 30%, rgba(201, 100, 66, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 70%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+        var(--bg-dark);
+    }
+
+    .hero-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+    }
+
+    .hero-top .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      font-weight: 500;
+    }
+
+    .hero-top .badge::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--gold);
+    }
+
+    .hero-main {
+      max-width: 1400px;
+      margin: 60px auto;
+      width: 100%;
+    }
+
+    .hero-eyebrow {
+      font-size: 13px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent-bright);
+      margin-bottom: 24px;
+      font-weight: 500;
+    }
+
+    .hero-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(72px, 14vw, 220px);
+      font-weight: 900;
+      line-height: 0.88;
+      letter-spacing: -0.04em;
+      color: #fff;
+      margin-bottom: 32px;
+    }
+
+    .hero-title .em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(22px, 2.4vw, 36px);
+      font-weight: 300;
+      line-height: 1.3;
+      max-width: 800px;
+      color: var(--ink);
+      margin-bottom: 40px;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 48px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      color: var(--ink-dim);
+    }
+
+    .hero-meta .label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent-bright);
+      margin-bottom: 6px;
+      display: block;
+      font-weight: 600;
+    }
+
+    .hero-meta .value {
+      font-size: 16px;
+      color: var(--ink);
+      font-weight: 400;
+      font-family: 'Fraunces', serif;
+    }
+
+    .hero-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+    }
+
+    .scroll-hint {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+    }
+
+    .scroll-hint::after {
+      content: "";
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(180deg, var(--accent), transparent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    /* ── INTRO BAND ────────────────────────────── */
+    .intro-band {
+      background: var(--bg-mid);
+      padding: 120px 6vw;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .intro-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .intro-quote {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(28px, 3.6vw, 56px);
+      font-weight: 300;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin-bottom: 32px;
+    }
+
+    .intro-quote .accent {
+      color: var(--accent-bright);
+      font-style: italic;
+    }
+
+    .intro-byline {
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+      font-weight: 500;
+    }
+
+    /* ── SPEAKERS SECTION ─────────────────────── */
+    .speakers {
+      background: var(--bg-dark);
+      padding: 120px 6vw 80px;
+    }
+
+    .speakers-header {
+      max-width: 1400px;
+      margin: 0 auto 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 32px;
+    }
+
+    .speakers-eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--accent-bright);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .speakers-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(40px, 5vw, 80px);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+
+    .speakers-count {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      color: var(--ink-dim);
+      letter-spacing: 0.04em;
+    }
+
+    .speakers-count strong {
+      color: var(--gold);
+      font-weight: 500;
+      font-size: 32px;
+      font-family: 'Fraunces', serif;
+      display: block;
+      line-height: 1;
+    }
+
+    .speakers-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 28px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      color: var(--ink-card);
+      border-radius: 18px;
+      padding: 36px 32px 28px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 380px;
+      overflow: hidden;
+      transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--gold));
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    .card.in-progress::before {
+      background: linear-gradient(90deg, #94a3b8, #cbd5e1);
+    }
+
+    .card-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+
+    .card-num .slash {
+      color: #ccc;
+      margin: 0 6px;
+    }
+
+    .card-num .total {
+      color: #999;
+    }
+
+    .card-speaker {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      color: #888;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .card-name {
+      font-family: 'Fraunces', serif;
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--ink-card);
+      margin-bottom: 4px;
+      line-height: 1.15;
+    }
+
+    .card-id {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #aaa;
+      letter-spacing: 0.04em;
+      margin-bottom: 28px;
+    }
+
+    .card-talk-label {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .card-dream {
+      font-family: 'Fraunces', serif;
+      font-size: 19px;
+      font-weight: 500;
+      line-height: 1.4;
+      color: var(--ink-card);
+      letter-spacing: -0.005em;
+      margin-bottom: 24px;
+      flex-grow: 1;
+    }
+
+    .card-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 20px;
+      background: var(--ink-card);
+      color: #fff;
+      border-radius: 100px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: background 0.3s, transform 0.3s;
+      margin-top: auto;
+    }
+
+    .card-cta:hover {
+      background: var(--accent);
+      transform: translateX(4px);
+    }
+
+    .card-cta .arrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 400;
+    }
+
+    .card.in-progress .card-cta {
+      background: #f1f5f9;
+      color: #64748b;
+      pointer-events: none;
+    }
+
+    .in-progress-tag {
+      display: inline-block;
+      padding: 4px 10px;
+      background: #fef3c7;
+      color: #92400e;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+
+    /* ── FOOTER ────────────────────────────────── */
+    .footer {
+      padding: 80px 6vw 60px;
+      background: var(--bg-mid);
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 60px;
+    }
+
+    .footer h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 28px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .footer p {
+      color: var(--ink-dim);
+      font-size: 14px;
+      line-height: 1.7;
+      max-width: 420px;
+    }
+
+    .footer .col-label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent-bright);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .footer .col-text {
+      font-family: 'Fraunces', serif;
+      font-size: 16px;
+      color: #fff;
+      line-height: 1.5;
+    }
+
+    .footer-bottom {
+      max-width: 1400px;
+      margin: 60px auto 0;
+      padding-top: 32px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+    }
+
+    @media (max-width: 768px) {
+      .hero-top { flex-direction: column; gap: 16px; }
+      .hero-meta { gap: 24px; }
+      .footer-inner { grid-template-columns: 1fr; gap: 40px; }
+      .speakers-header { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════ HERO ══════════ -->
+  <section class="hero">
+    <div class="hero-top">
+      <div class="badge">A Showcase from Web Design &amp; Development · Spring 2026</div>
+      <div>SMIT · International Graduate School</div>
+    </div>
+
+    <div class="hero-main">
+      <div class="hero-eyebrow">Spring 2026 · Vol. 01</div>
+      <h1 class="hero-title">
+        Dream<br>
+        <span class="em">Conference</span>
+      </h1>
+      <p class="hero-sub">
+        Sixteen students. Sixteen futures. One classroom in Anyang where the question was not <em>"what tool will you use?"</em> but <em>"what do you want to make exist?"</em>
+      </p>
+      <div class="hero-meta">
+        <div>
+          <span class="label">Date</span>
+          <span class="value">May 27, 2026</span>
+        </div>
+        <div>
+          <span class="label">Venue</span>
+          <span class="value">E405 PC Lab · SMIT</span>
+        </div>
+        <div>
+          <span class="label">Course</span>
+          <span class="value">Web Design &amp; Development</span>
+        </div>
+        <div>
+          <span class="label">Series</span>
+          <span class="value">DTDT 1/4 — Dream</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-bottom">
+      <div>Curated from Week 11 — Make Your Dream Visible</div>
+      <div class="scroll-hint">Scroll</div>
+    </div>
+  </section>
+
+  <!-- ══════════ INTRO BAND ══════════ -->
+  <section class="intro-band">
+    <div class="intro-inner">
+      <p class="intro-quote">
+        Before the theory, before the tool, before the website — <span class="accent">a dream you can see</span>. Every speaker on this page wrote a single sentence about what they want to bring into the world, then turned that sentence into a Figma deck. This is not a portfolio. It is a <em>moodboard for a generation</em>.
+      </p>
+      <p class="intro-byline">Curated by Prof. DY · SMIT International Graduate School</p>
+    </div>
+  </section>
+
+  <!-- ══════════ SPEAKERS ══════════ -->
+  <section class="speakers">
+    <div class="speakers-header">
+      <div>
+        <div class="speakers-eyebrow">The Lineup</div>
+        <h2 class="speakers-title">Speakers</h2>
+      </div>
+      <div class="speakers-count">
+        <strong>16</strong>
+        dreams on the program
+      </div>
+    </div>
+
+    <div class="speakers-grid">
+
+      <!-- TALK 01 — Sujata Tamang -->
+      <article class="card">
+        <div class="card-num">Talk <span class="slash">/</span> 01 <span class="total">of 16</span></div>
+        <div class="card-speaker">Speaker</div>
+        <div class="card-name">Tamang Sujata</div>
+        <div class="card-id">202509035</div>
+        <div class="card-talk-label">The Dream</div>
+        <p class="card-dream">"To create a skincare brand — <em>Sujerra</em> — that brings calm, confidence, and simplicity back into self-care. Helping people feel comfortable in their natural skin."</p>
+        <a href="https://www.figma.com/make/J08LAozlbLGyYVe1kawxuF/Luxury-Skincare-Presentation?t=n7O108onlnBl53K1-20&fullscreen=1" class="card-cta" target="_blank" rel="noopener">View Deck <span class="arrow">→</span></a>
+      </article>
+
+      <!-- TALK 02 — Anjali Shrivastav -->
+      <article class="card">
+        <div class="card-num">Talk <span class="slash">/</span> 02 <span class="total">of 16</span></div>
+        <div class="card-speaker">Speaker</div>
+        <div class="card-name">Shrivastav Anjali</div>
+        <div class="card-id">202509045</div>
+        <div class="card-talk-label">The Dream</div>
+        <p class="card-dream">"To build <em>CalmAI</em> — an AI assistant that helps people reduce stress, stay organized, and live a healthier, more balanced life."</p>
+        <a href="https://gamma.app/docs/CalmAI-Your-AI-Life-Companion-6psaqkc10p05986" class="card-cta" target="_blank" rel="noopener">View Deck <span class="arrow">→</span></a>
+      </article>
+
+      <!-- TALK 03 — Dawa Tashi Lama -->
+      <article class="card">
+        <div class="card-num">Talk <span class="slash">/</span> 03 <span class="total">of 16</span></div>
+        <div class="card-speaker">Speaker</div>
+        <div class="card-name">Lama Dawa Tashi</div>
+        <div class="card-id">202509042</div>
+        <div class="card-talk-label">The Dream</div>
+        <p class="card-dream">"A modern crochet brand offering trendy, beginner-friendly patterns for Gen-Z makers — empowering young creators to build sustainable wardrobes."</p>
+        <a href="https://www.figma.com/make/PhzSGD5TVBqJRLmhdctFxL/Sleep-Monitoring-App?fullscreen=1&t=SpNbHahEAdwjBaWX-1&code-node-id=0-9" class="card-cta" target="_blank" rel="noopener">View Deck <span class="arrow">→</span></a>
+      </article>
+
+      <!-- TALK 04 — Susmita Ghising -->
+      <article class="card">
+        <div class="card-num">Talk <span class="slash">/</span> 04 <span class="total">of 16</span></div>
+        <div class="card-speaker">Speaker</div>
+        <div class="card-name">Ghising Susmita</div>
+        <div class="card-id">202509053</div>
+        <div class="card-talk-label">The Dream</div>
+        <p class="card-dream">"To learn and cook different cuisines — and share <em>easy recipes</em> for anyone who wants to start cooking from zero."</p>
+        <a href="https://www.figma.com/slides/SZWZ76hBQ7it2qdMT3HTfq/Untitled?node-id=1-33&t=mUiLVytu8rIbZq9I-0" class="card-cta" target="_blank" rel="noopener">View Deck <span class="arrow">→</span></a>
+      </article>
+
+      <!-- TALK 05 — Dilpa Limbu -->
+      <article class="card">
+        <div class="card-num">Talk <span class="slash">/</span> 05 <span class="total">of 16</span></div>
+        <div class="card-speaker">Speaker</div>
+        <div class="card-name">Limbu Dilpa</div>
+        <div class="card-id">202509040</div>
+        <div class="card-talk-label">The Dream</div>
+        <p class="card-dream">"To create <em>ShiftMate</em> — a calm, simple app helping student part-timers track their shifts without stress."</p>
+        <a href="https://www.figma.com/make/ZrfIWzZj2CZ3GLKfUwdc83/ShiftMate-Presentation-Design?t=MY8TuimphEqET8o3-1" class="card-cta" target="_blank" rel="noopener">View Deck <span class="arrow">→</span></a>
+      </article>
+
+      <!-- TALK 06 — Newton Karki -->
+      <article class="card">
+        <div class="card-num">Talk <span class="slash">/</span> 06 <span class="total">of 16</span></div>
+        <div class="card-speaker">Speaker</div>
+        <div class="card-name">Karki Newton</div>
+        <div class="card-id">202509038</div>
+        <div class="card-talk-label">The Dream</div>
+        <p class="card-dream">"To connect musicians and music lovers across Nepal — helping people find their desired instruments locally, not from across the world."</p>
+        <a href="https://www.figma.com/make/hYn36toKqsdNL6M5Dkmi4X/Redesign-existing-page?t=11hEd6adwUaTqtdu-20&fullscreen=1" class="card-cta" target="_blank" rel="noopener">View Deck <span class="arrow">→</span></a>
+      </article>
+
+      <!-- TALK 07 — Dan Tamang -->
+      <article class="card">
+        <div class="card-num">Talk <span class="slash">/</span> 07 <span class="total">of 16</span></div>
+        <div class="card-speaker">Speaker</div>
+        <div class="card-name">Tamang Dan</div>
+        <div class="card-id">202509065</div>
+        <div class="card-talk-label">The Dream</div>
+        <p class="card-dream">"To open a <em>Montessori school</em> — a place where children learn by curiosity, by movement, by touching the world before naming it."</p>
+        <a href="https://www.figma.com/make/OcQnXk9h76fFAcj7BJZq05/Montessori-Business-Presentation?t=oEsGq25yOmZ9gAws-20&fullscreen=1&preview-route=%2Fslide-3" class="card-cta" target="_blank" rel="noopener">View Deck <span class="arrow">→</span></a>
+      </article>
+
+      <!-- TALK 08 — Asadullo -->
+      <article class="card">
+        <div class="card-num">Talk <span class="slash">/</span> 08 <span class="total">of 16</span></div>
+        <div class="card-speaker">Speaker</div>
+        <div class="card-name">Asadullo</div>
+        <div class="card-id">202509012</div>
+        <div class="card-talk-label">The Dream</div>
+        <p class="card-dream">"To create educational opportunities in <em>artificial intelligence science</em> — for students who are highly interested but cannot afford the access."</p>
+        <a href="https://www.figma.com/design/OI1h3xP8v62mVaAfZ9Yxhv" class="card-cta" target="_blank" rel="noopener">View Deck <span class="arrow">→</span></a>
+      </article>
+
+      <!-- TALK 09 — Samir Thapa -->
+      <article class="card">
+        <div class="card-num">Talk <span class="slash">/</span> 09 <span class="total">of 16</span></div>
+        <div class="card-speaker">Speaker</div>
+        <div class="card-name">Thapa Samir</div>
+        <div class="card-id">202509048</div>
+        <div class="card-talk-label">The Dream</div>
+        <p class="card-dream">"To merge <em>artificial intelligence with civil engineering</em> — building sustainable infrastructure for the development of my country."</p>
+        <a href="https://www.figma.com/make/WTIbOAbWELTCbtox6GWCxY/Dream-Visualization-Slides?fullscreen=1&t=P2xDmsv8yyNbWLxo-1&code-node-id=0-9" class="card-cta" target="_blank" rel="noopener">View Deck <span class="arrow">→</span></a>
+      </article>
+
+      <!-- TALK 10 — Aarya Moktan -->
+      <article class="card">
+        <div class="card-num">Talk <span class="slash">/</span> 10 <span class="total">of 16</span></div>
+        <div class="card-speaker">Speaker</div>
+        <div class="card-name">Moktan Aarya</div>
+        <div class="card-id">202509056</div>
+        <div class="card-talk-label">The Dream</div>
+        <p class="card-dream">"To travel the world — and explore it as much as I can. Every place a chapter, every road a verse."</p>
+        <a href="https://www.figma.com/slides/rXGFRWYgF6r33Sv12Ct5nJ/Untitled?node-id=1-32&t=elhWXwSrn4NmgxQp-0" class="card-cta" target="_blank" rel="noopener">View Deck <span class="arrow">→</span></a>
+      </article>
+
+      <!-- TALK 11 — Lila Shah -->
+      <article class="card">
+        <div class="card-num">Talk <span class="slash">/</span> 11 <span class="total">of 16</span></div>
+        <div class="card-speaker">Speaker</div>
+        <div class="card-name">Shah Lila</div>
+        <div class="card-id">202509070</div>
+        <div class="card-talk-label">The Dream</div>
+        <p class="card-dream">"To become a <em>content creator</em> — a storyteller for the scroll-era, building an audience one frame at a time."</p>
+        <a href="https://www.figma.com/slides/tL5AJmRUIJivzzxvGX1KLp/Untitled?node-id=1-33&t=87rLiUs5acgnaA9m-0" class="card-cta" target="_blank" rel="noopener">View Deck <span class="arrow">→</span></a>
+      </article>
+
+      <!-- TALK 12 — Sandeep Mahatra -->
+      <article class="card">
+        <div class="card-num">Talk <span class="slash">/</span> 12 <span class="total">of 16</span></div>
+        <div class="card-speaker">Speaker</div>
+        <div class="card-name">Mahatra Sandeep</div>
+        <div class="card-id">202509054</div>
+        <div class="card-talk-label">The Dream</div>
+        <p class="card-dream">"To build a website at the intersection of <em>engineering and mining</em> — making technical industries readable to the next generation."</p>
+        <a href="https://www.figma.com/make/WTIbOAbWELTCbtox6GWCxY/Dream-Visualization-Slides?fullscreen=1&t=P2xDmsv8yyNbWLxo-1&code-node-id=0-9" class="card-cta" target="_blank" rel="noopener">View Deck <span class="arrow">→</span></a>
+      </article>
+
+      <!-- TALK 13 — Dikshya Raut (IN PROGRESS) -->
+      <article class="card in-progress">
+        <div class="card-num">Talk <span class="slash">/</span> 13 <span class="total">of 16</span></div>
+        <div class="card-speaker">Speaker</div>
+        <div class="card-name">Raut Dikshya</div>
+        <div class="card-id">202509041</div>
+        <div class="in-progress-tag">In progress</div>
+        <div class="card-talk-label">The Dream</div>
+        <p class="card-dream">"To create a space where art, emotions, and stories connect people across cultures — work that inspires, work that makes others feel <em>understood</em>."</p>
+        <a href="#" class="card-cta">Deck coming soon</a>
+      </article>
+
+      <!-- TALK 14 — Ramesh Ayer (IN PROGRESS) -->
+      <article class="card in-progress">
+        <div class="card-num">Talk <span class="slash">/</span> 14 <span class="total">of 16</span></div>
+        <div class="card-speaker">Speaker</div>
+        <div class="card-name">Ayer Ramesh Banauna</div>
+        <div class="card-id">202509044</div>
+        <div class="in-progress-tag">In progress</div>
+        <div class="card-talk-label">The Dream</div>
+        <p class="card-dream">"A <em>flying car</em> — the oldest sci-fi dream still waiting for the right century. Maybe this one."</p>
+        <a href="#" class="card-cta">Deck coming soon</a>
+      </article>
+
+      <!-- TALK 15 — Kamlesh Rawal (IN PROGRESS) -->
+      <article class="card in-progress">
+        <div class="card-num">Talk <span class="slash">/</span> 15 <span class="total">of 16</span></div>
+        <div class="card-speaker">Speaker</div>
+        <div class="card-name">Rawal Kamlesh</div>
+        <div class="card-id">202509071</div>
+        <div class="in-progress-tag">In progress</div>
+        <div class="card-talk-label">The Dream</div>
+        <p class="card-dream">"To build beautiful, different websites — starting with a <em>fitness website</em> that turns motion into ritual."</p>
+        <a href="#" class="card-cta">Deck coming soon</a>
+      </article>
+
+      <!-- TALK 16 — Aarya Moktan (Second submission, alt take) -->
+      <article class="card">
+        <div class="card-num">Talk <span class="slash">/</span> 16 <span class="total">of 16</span></div>
+        <div class="card-speaker">Speaker · Encore</div>
+        <div class="card-name">Moktan Aarya</div>
+        <div class="card-id">202509056</div>
+        <div class="card-talk-label">The Dream (Take Two)</div>
+        <p class="card-dream">"My dream is to travel the world — because I want to <em>explore more</em>. Same dream, said twice. That is how you know it is real."</p>
+        <a href="https://www.figma.com/slides/SZWZ76hBQ7it2qdMT3HTfq/Untitled?node-id=1-33&t=3EqtNALAW5J1HQCI-0" class="card-cta" target="_blank" rel="noopener">View Deck <span class="arrow">→</span></a>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <h3>From a Dream to a Website</h3>
+        <p>
+          This conference is part of <strong>DTDT</strong> — a four-week journey at SMIT: <em>Dream → Theory → Design → Tool</em>. Week 11 was the dream you can see. Week 12 is the foundation under it. Week 14 (June 10) is when each of these speakers takes the floor and presents their own site live. Final wrap-up on June 17.
+        </p>
+      </div>
+      <div>
+        <div class="col-label">Series</div>
+        <div class="col-text">
+          DTDT 1/4 — Dream<br>
+          <span style="color: var(--ink-dim); font-size: 13px;">Spring 2026 · Vol. 01</span>
+        </div>
+      </div>
+      <div>
+        <div class="col-label">Host</div>
+        <div class="col-text">
+          Prof. DY<br>
+          <span style="color: var(--ink-dim); font-size: 13px;">SMIT · IGS<br>Anyang, Korea</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Web Design &amp; Development · SMIT</div>
+      <div>Curated May 27, 2026</div>
+    </div>
+  </footer>
+
+</body>
+</html>
